@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instant Umrah Quote | Live Demo</title>
+<meta name="description" content="A live Umrah price calculator for travel agencies. Customers see their price in 30 seconds and the enquiry reaches your team on WhatsApp.">
+<meta property="og:title" content="Instant Umrah Quote | Live Demo">
+<meta property="og:description" content="Customers see their Umrah price in 30 seconds. Your team gets a qualified enquiry on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#0d3b34;--pine2:#0a2e29;--pine3:#15524a;--sand:#f7f2e8;--paper:#fffdf8;--line:#e5dcc8;
+  --ink:#1c2a27;--ink2:#5b6a65;--gold:#b98a2f;--gold2:#e4c078;--hot:#b4472b;--ok:#1f7a52;--wa:#1f8f4e;
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Fraunces",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.14;margin:0}
+a{color:inherit}
+.wrap{width:min(1160px,100% - 32px);margin:0 auto}
+.ribbon{background:var(--pine2);color:var(--gold2);font-size:.82rem;padding:8px 16px;text-align:center}
+.ribbon b{color:#fff}
+header.site{background:var(--pine);color:#fff}
+.bar{display:flex;align-items:center;gap:12px;padding:16px 0}
+.mark{width:42px;height:42px;border-radius:50%;background:var(--gold2);color:var(--pine2);display:grid;place-items:center;font-weight:800;font-size:.95rem;flex:none}
+.bar b{font-size:1.1rem;line-height:1.2}
+.bar small{display:block;color:#a9c7bf;font-weight:500;font-size:.78rem}
+.bar nav{margin-inline-start:auto;display:flex;gap:18px;font-size:.9rem;color:#cfe2dd}
+.bar nav a{text-decoration:none}
+@media (max-width:720px){.bar nav{display:none}}
+.hero{position:relative;background:var(--pine);color:#fff;padding:26px 0 150px;overflow:hidden}
+.hero svg.pat{position:absolute;inset:0;width:100%;height:100%;opacity:.08}
+.hero .wrap{position:relative}
+.hero h1{font-size:clamp(2.1rem,5.2vw,3.5rem);max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p{color:#cfe2dd;font-size:1.12rem;max-width:56ch;margin:14px 0 0}
+.count{display:inline-block;margin-top:16px;padding:6px 14px;border:1px solid #3d7468;border-radius:999px;font-size:.86rem;color:var(--gold2)}
+.stage{margin-top:-122px;position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:940px){.stage{grid-template-columns:1fr}}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 40px rgba(13,59,52,.12)}
+.form{padding:24px}
+.form h2{font-size:1.35rem;margin-bottom:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.grid2{grid-template-columns:1fr}}
+label,.lbl{display:block;font-weight:700;font-size:.84rem;margin-bottom:6px}
+select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;font:inherit;color:var(--ink);min-height:46px}
+.field{margin-bottom:16px;min-width:0}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 8px;font:inherit;cursor:pointer;text-align:center;color:var(--ink);min-height:46px}
+.chip b{display:block;font-size:.92rem}
+.chip span{display:block;color:var(--ink2);font-size:.74rem}
+.chip[aria-pressed="true"]{border-color:var(--pine3);background:#e7f1ec;box-shadow:inset 0 0 0 1px var(--pine3)}
+.step{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:10px;background:#fff;padding:4px;min-height:46px}
+.step button{width:38px;height:38px;border:0;border-radius:8px;background:#e7f1ec;color:var(--pine);font-size:1.2rem;font-weight:800;cursor:pointer}
+.step output{font-weight:800}
+.checks{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.9rem}
+.checks label{font-weight:500;margin:0;display:flex;gap:7px;align-items:center}
+.quote{padding:22px;position:sticky;top:14px;overflow:hidden}
+@media (max-width:940px){.quote{position:static}}
+.quote .tag{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);font-weight:700}
+.pp{font-family:var(--serif);font-weight:700;font-size:3rem;line-height:1.1;color:var(--pine);margin:2px 0 0}
+.pp small{font-family:var(--sans);font-size:.92rem;font-weight:600;color:var(--ink2)}
+.tot{font-weight:700;margin:2px 0 12px}
+.rows{border-top:1px dashed var(--line);padding-top:10px;font-size:.88rem}
+.rows div{display:flex;justify-content:space-between;gap:10px;padding:3px 0;color:var(--ink2)}
+.rows div span:last-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.btn{display:flex;width:100%;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:14px 16px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;text-align:center}
+.btn.main{background:var(--wa);color:#fff;margin-top:14px}
+.btn.gold{background:var(--gold2);color:var(--pine2)}
+.fine{font-size:.76rem;color:var(--ink2);margin:10px 0 0}
+.lead{display:none;margin-top:14px;border:1px solid #bcd8cb;background:#eef6f1;border-radius:14px;padding:14px}
+.lead.on{display:block;animation:rise .35s ease-out}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lead.on{animation:none}html{scroll-behavior:auto}}
+.lead h3{font-family:var(--sans);font-size:.92rem;font-weight:800;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.score{font-size:.72rem;padding:2px 9px;border-radius:999px;background:var(--hot);color:#fff;white-space:nowrap}
+.score.warm{background:var(--gold)}
+.score.new{background:var(--ink2)}
+.lead pre{white-space:pre-wrap;word-break:break-word;font-family:var(--sans);font-size:.84rem;margin:8px 0 0;background:#fff;border-radius:10px;padding:10px;border:1px solid #d6e8de}
+section{padding:58px 0}
+section h2{font-size:clamp(1.6rem,3.6vw,2.3rem);max-width:24ch}
+.sub{color:var(--ink2);max-width:62ch;margin:10px 0 0}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px}
+@media (max-width:760px){.compare{grid-template-columns:1fr}}
+.col{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px}
+.col.good{background:var(--pine);color:#fff;border-color:var(--pine)}
+.col h3{font-size:1.15rem;margin-bottom:10px}
+.col ol{margin:0;padding-inline-start:20px}
+.col li{margin:6px 0}
+.col.good li::marker{color:var(--gold2)}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+@media (max-width:860px){.tiles{grid-template-columns:1fr}}
+.tile{border-top:3px solid var(--gold);padding-top:12px}
+.tile b{display:block;margin-bottom:4px}
+.tile span{color:var(--ink2);font-size:.95rem}
+.band{background:var(--paper);border-block:1px solid var(--line)}
+.price{background:var(--pine);color:#fff}
+.price .sub{color:#cfe2dd}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+@media (max-width:860px){.plans{grid-template-columns:1fr}}
+.plan{border:1px solid #2f6a5e;border-radius:16px;padding:20px;background:var(--pine2)}
+.plan b{display:block}
+.plan strong{font-family:var(--serif);font-size:1.9rem;color:var(--gold2);display:block;margin:4px 0}
+.plan span{color:#cfe2dd;font-size:.93rem}
+.cta{margin-top:26px;max-width:380px}
+.note{margin-top:18px;font-size:.84rem;color:#a9c7bf;max-width:70ch}
+footer{background:var(--pine2);color:#a9c7bf;font-size:.84rem;padding:24px 0}
+footer a{color:var(--gold2)}
+</style>
+</head>
+<body>
+<div class="ribbon" id="ribbon"></div>
+<header class="site"><div class="wrap bar">
+  <span class="mark" id="mark">UT</span>
+  <b><span id="brand">Your Agency Name</span><small>Umrah packages from the UK</small></b>
+  <nav><a href="#quote">Get a price</a><a href="#why">Why it works</a><a href="#pricing">Pricing</a></nav>
+</div></header>
+
+<div class="hero">
+  <svg class="pat" aria-hidden="true"><defs><pattern id="girih" width="96" height="96" patternUnits="userSpaceOnUse"><path fill="none" stroke="#e4c078" stroke-width="1.4" d="M48 6l12 30 30 12-30 12-12 30-12-30L6 48l30-12zM48 30l18 18-18 18-18-18z"/></pattern></defs><rect width="100%" height="100%" fill="url(#girih)"/></svg>
+  <div class="wrap">
+    <h1>See your Umrah price in <em>30 seconds</em></h1>
+    <p>Choose your airport, dates, nights and hotels. Your price updates as you go, with no form to wait on.</p>
+    <span class="count" id="count"></span>
+  </div>
+</div>
+
+<div class="wrap stage" id="quote">
+  <div class="panel form">
+    <h2>Build your Umrah</h2>
+    <div class="grid2">
+      <div class="field"><label for="air">Flying from</label><select id="air"></select></div>
+      <div class="field"><label for="when">When</label><select id="when"></select></div>
+    </div>
+    <div class="grid2">
+      <div class="field"><span class="lbl">Nights in Makkah</span><div class="step"><button type="button" data-s="mk" data-d="-1" aria-label="Fewer nights in Makkah">−</button><output id="mk">7</output><button type="button" data-s="mk" data-d="1" aria-label="More nights in Makkah">+</button></div></div>
+      <div class="field"><span class="lbl">Nights in Madinah</span><div class="step"><button type="button" data-s="md" data-d="-1" aria-label="Fewer nights in Madinah">−</button><output id="md">3</output><button type="button" data-s="md" data-d="1" aria-label="More nights in Madinah">+</button></div></div>
+    </div>
+    <div class="field"><span class="lbl">Hotel standard</span><div class="chips" id="tier"></div></div>
+    <div class="field"><span class="lbl">Room sharing</span><div class="chips" id="room"></div></div>
+    <div class="chips" style="margin-bottom:16px">
+      <div><span class="lbl">Adults</span><div class="step"><button type="button" data-s="ad" data-d="-1" aria-label="Fewer adults">−</button><output id="ad">2</output><button type="button" data-s="ad" data-d="1" aria-label="More adults">+</button></div></div>
+      <div><span class="lbl">Children 2–11</span><div class="step"><button type="button" data-s="ch" data-d="-1" aria-label="Fewer children">−</button><output id="ch">0</output><button type="button" data-s="ch" data-d="1" aria-label="More children">+</button></div></div>
+      <div><span class="lbl">Infants</span><div class="step"><button type="button" data-s="in" data-d="-1" aria-label="Fewer infants">−</button><output id="in">0</output><button type="button" data-s="in" data-d="1" aria-label="More infants">+</button></div></div>
+    </div>
+    <div class="field"><span class="lbl">Extras</span><div class="checks">
+      <label><input type="checkbox" id="direct"> Direct flights</label>
+      <label><input type="checkbox" id="ziy" checked> Ziyarat tours</label>
+      <label><input type="checkbox" id="train"> Haramain train</label>
+    </div></div>
+  </div>
+
+  <aside class="panel quote" aria-live="polite">
+    <div class="tag">Estimated price</div>
+    <p class="pp"><span id="pp">£0</span> <small>per adult</small></p>
+    <div class="tot">Group total <span id="tot">£0</span></div>
+    <div class="rows" id="rows"></div>
+    <button class="btn main" id="send" type="button">Send this quote on WhatsApp</button>
+    <p class="fine" id="fine"></p>
+    <div class="lead" id="lead">
+      <h3><span>What your team receives</span><span class="score" id="score"></span></h3>
+      <pre id="msg"></pre>
+    </div>
+  </aside>
+</div>
+
+<section id="why"><div class="wrap">
+  <h2>A quote form makes people wait. A live price keeps them with you.</h2>
+  <p class="sub">Umrah buyers compare several agencies in one sitting. The agency that shows a price first has the conversation first.</p>
+  <div class="compare">
+    <div class="col"><h3>Today</h3><ol>
+      <li>Customer sees a "starting from" price</li>
+      <li>Fills in a form or sends a message</li>
+      <li>Waits for your team to work out a quote</li>
+      <li>Keeps comparing other agencies meanwhile</li>
+    </ol></div>
+    <div class="col good"><h3>With Instant Quote</h3><ol>
+      <li>Customer builds their exact trip</li>
+      <li>Sees the price for their whole family at once</li>
+      <li>Sends it to your WhatsApp in one tap</li>
+      <li>Your team replies with the details already filled in</li>
+    </ol></div>
+  </div>
+  <div class="tiles">
+    <div class="tile"><b>Your prices, your margins</b><span>It runs on your own rate sheet. Send us a new season or hotel price and it is updated for you.</span></div>
+    <div class="tile"><b>Works on your current website</b><span>It sits on any page, including WordPress, through one embed code. No rebuild needed.</span></div>
+    <div class="tile"><b>Busy enquiries come first</b><span>Each enquiry is marked by travel date and group size, so a family of six for the last ten nights of Ramadan is answered first.</span></div>
+  </div>
+</div></section>
+
+<section class="price" id="pricing"><div class="wrap">
+  <h2>Simple pricing, no finance, no contracts</h2>
+  <p class="sub">We load your real packages and rates for you, and you see it working before you pay anything.</p>
+  <div class="plans">
+    <div class="plan"><b>Free preview</b><strong>£0</strong><span>Your branding and your real rates, on a private link for your team to try.</span></div>
+    <div class="plan"><b>Setup</b><strong>£249</strong><span>One-off. Fitted to your website, connected to your WhatsApp, tested on phones.</span></div>
+    <div class="plan"><b>Care plan</b><strong>£29/mo</strong><span>Season and price updates, hosting and support. Cancel any time.</span></div>
+  </div>
+  <div class="cta"><a class="btn gold" id="cta" target="_blank" rel="noopener">Set this up for my agency</a></div>
+  <p class="note">Halal by design: no interest-based finance, no gambling or alcohol promotion, no music and no images of people. Prices shown are samples. Package terms and ATOL protection stay with your agency.</p>
+</div></section>
+
+<footer><div class="wrap">Built by <span id="studio"></span>. <a id="li" target="_blank" rel="noopener">LinkedIn</a>. Demo only: no enquiry on this page is sent or stored.</div></footer>
+
+<script>
+const STUDIO = { name: "Md Hasibur Rahman", whatsapp: "8801821484988", linkedin: "https://www.linkedin.com/in/evan-shareef/" };
+// Filled by umrah_leads/make_demo_links.py: slug -> agency name. Names only, never contact details.
+const AGENCIES = {"taqwa-tours": "Taqwa Tours", "islamic-travel": "Islamic Travel", "bukhari-travel": "Bukhari Travel", "al-amanah": "Al-Amanah Hajj & Umrah", "al-huda": "Al Huda Travel & Hajj Umrah Services", "nabil": "Nabil Hajj & Umrah Services", "bilal-tours": "Bilal Hajj & Umrah Tours", "ibadah-tours": "Ibadah Tours", "al-badar": "Al Badar Travel", "yousaf-tours": "Yousaf Religious Tours", "pak-travels": "Pak Travels", "tawaf-travel": "Tawaf Travel", "mina-tours": "Mina Tours", "love-umrah": "Love Umrah", "al-hidaayah": "Al-Hidaayah Travel", "zam-zam": "Zam Zam Travels", "hasan-travel": "Hasan Travel & Tours", "madani-hajj": "Madani Hajj Tours", "dome-tours": "Dome Tours"};
+const RAMADAN = new Date("2027-02-08T00:00:00");
+
+// Sample rate sheet. A real install swaps this for the agency's own prices.
+const AIR = [["LHR","London Heathrow",420],["LGW","London Gatwick",430],["MAN","Manchester",440],["BHX","Birmingham",450],["LBA","Leeds Bradford",470],["GLA","Glasgow",480],["EDI","Edinburgh",490]];
+const WHEN = [
+  ["dec","December school holidays",120,1.25],["jan","January (lower prices)",0,1],
+  ["r1","Ramadan: first 10 days",180,1.3],["r2","Ramadan: middle 10 days",260,1.6],
+  ["r3","Ramadan: last 10 days",420,2.6],["eas","Easter school holidays",140,1.2],["off","May (lower prices)",0,1]];
+const TIER = { 3:{t:"3 star",s:"about 800m",n:{q:22,t:28,d:38}}, 4:{t:"4 star",s:"about 400m",n:{q:34,t:44,d:60}}, 5:{t:"5 star",s:"about 100m",n:{q:58,t:76,d:110}} };
+const ROOM = { q:["Quad","4 in a room"], t:["Triple","3 in a room"], d:["Double","2 in a room"] };
+const FEES = { visaTransfers:125, direct:90, ziyarat:35, train:55, childShare:.75, infant:175, deposit:50, madinah:.8 };
+const LIMIT = { mk:[3,21], md:[0,10], ad:[1,12], ch:[0,8], in:[0,4] };
+
+const $ = id => document.getElementById(id);
+const gbp = n => "£" + Math.round(n).toLocaleString("en-GB");
+const S = { mk:7, md:3, ad:2, ch:0, in:0, tier:4, room:"q" };
+let sent = false;
+
+const slug = new URLSearchParams(location.search).get("for");
+const agency = Object.prototype.hasOwnProperty.call(AGENCIES, slug) ? AGENCIES[slug] : "";
+const name = agency || "Your Agency Name";
+
+$("brand").textContent = name;
+$("mark").textContent = name.split(/[\s&-]+/).filter(w => /^[A-Za-z]/.test(w)).slice(0, 2).map(w => w[0].toUpperCase()).join("");
+$("ribbon").innerHTML = agency
+  ? `Concept demo prepared for <b></b>. Sample prices only. Not a live offer.`
+  : `Live demo with sample prices. Not a live offer.`;
+if (agency) { $("ribbon").querySelector("b").textContent = agency; document.title = `${agency} | Instant Umrah Quote Demo`; }
+const days = Math.max(0, Math.round((RAMADAN - new Date()) / 864e5));
+$("count").textContent = days ? `About ${days} days to Ramadan, expected around 8 February 2027` : "Ramadan packages";
+$("studio").textContent = STUDIO.name;
+$("li").href = STUDIO.linkedin;
+$("cta").href = `https://wa.me/${STUDIO.whatsapp}?text=${encodeURIComponent(`Assalamu alaikum, I saw the Instant Umrah Quote demo${agency ? " for " + agency : ""} and I am interested.`)}`;
+
+AIR.forEach(a => $("air").add(new Option(a[1], a[0])));
+WHEN.forEach(w => $("when").add(new Option(w[1], w[0])));
+$("when").value = "r2";
+
+function chips(box, items, key) {
+  items.forEach(([v, a, b]) => {
+    const c = document.createElement("button");
+    c.type = "button"; c.className = "chip"; c.dataset.v = v;
+    c.innerHTML = `<b>${a}</b><span>${b}</span>`;
+    c.onclick = () => { S[key] = isNaN(v) ? v : +v; draw(); };
+    $(box).append(c);
+  });
+}
+chips("tier", Object.entries(TIER).map(([k, v]) => [k, v.t, v.s + " from the Haram"]), "tier");
+chips("room", Object.entries(ROOM).map(([k, v]) => [k, v[0], v[1]]), "room");
+
+document.querySelectorAll("[data-s]").forEach(b => b.onclick = () => {
+  const k = b.dataset.s;
+  S[k] = Math.min(LIMIT[k][1], Math.max(LIMIT[k][0], S[k] + +b.dataset.d));
+  draw();
+});
+["air", "when", "direct", "ziy", "train"].forEach(i => $(i).onchange = draw);
+
+function price() {
+  const air = AIR.find(a => a[0] === $("air").value), w = WHEN.find(x => x[0] === $("when").value);
+  const flight = air[2] + w[2] + ($("direct").checked ? FEES.direct : 0);
+  const nightly = TIER[S.tier].n[S.room] * w[3];
+  const hotels = nightly * S.mk + nightly * FEES.madinah * S.md;
+  const extras = ($("ziy").checked ? FEES.ziyarat : 0) + ($("train").checked ? FEES.train : 0);
+  const pp = flight + hotels + FEES.visaTransfers + extras;
+  const total = pp * S.ad + pp * FEES.childShare * S.ch + FEES.infant * S.in;
+  return { air, w, flight, hotels, extras, pp, total, people: S.ad + S.ch + S.in, deposit: FEES.deposit * (S.ad + S.ch + S.in) };
+}
+
+function draw() {
+  ["mk", "md", "ad", "ch", "in"].forEach(k => $(k).textContent = S[k]);
+  document.querySelectorAll("#tier .chip").forEach(c => c.setAttribute("aria-pressed", +c.dataset.v === S.tier));
+  document.querySelectorAll("#room .chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.v === S.room));
+  const p = price();
+  $("pp").textContent = gbp(p.pp);
+  $("tot").textContent = gbp(p.total);
+  $("rows").innerHTML = [["Return flights", p.flight], [`Hotels, ${S.mk + S.md} nights`, p.hotels], ["Visa and transfers", FEES.visaTransfers]]
+    .concat(p.extras ? [["Extras", p.extras]] : [])
+    .map(([a, b]) => `<div><span>${a}</span><span>${gbp(b)}</span></div>`).join("");
+  $("fine").textContent = `Each line is per adult. A ${gbp(p.deposit)} deposit holds your places. Sample prices for this demo; the agency confirms your final price.`;
+  if (sent) lead(p);
+}
+
+function lead(p) {
+  const hot = p.w[0][0] === "r" && p.people >= 4 || p.w[0] === "r3", warm = p.w[0][0] === "r" || p.people >= 4;
+  const score = $("score");
+  score.textContent = hot ? "Priority: reply first" : warm ? "Warm" : "New";
+  score.className = "score" + (hot ? "" : warm ? " warm" : " new");
+  $("msg").textContent =
+    `New Umrah quote\n${p.w[1]}\nFrom ${p.air[1]}${$("direct").checked ? " (direct)" : ""}\n` +
+    `${S.mk} nights Makkah, ${S.md} nights Madinah\n${TIER[S.tier].t}, ${ROOM[S.room][0].toLowerCase()} room\n` +
+    `${S.ad} adults, ${S.ch} children, ${S.in} infants\nQuoted ${gbp(p.total)} (${gbp(p.pp)} per adult)`;
+  $("lead").classList.add("on");
+}
+
+$("send").onclick = () => { sent = true; lead(price()); $("send").textContent = "Demo: nothing was sent"; };
+draw();
+</script>
+</body>
+</html>
